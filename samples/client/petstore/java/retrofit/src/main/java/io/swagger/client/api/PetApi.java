@@ -1,237 +1,233 @@
 package io.swagger.client.api;
 
-import io.swagger.client.model.*;
+import io.swagger.client.CollectionFormats.*;
 
 import retrofit.Callback;
 import retrofit.http.*;
 import retrofit.mime.*;
-import java.util.*;
 
 import io.swagger.client.model.Pet;
 import java.io.File;
+import io.swagger.client.model.ModelApiResponse;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public interface PetApi {
-  
-  /**
-   * Update an existing pet
-   * Sync method
-   * 
-   * @param body Pet object that needs to be added to the store
-   * @return Void
-   */
-  
-  @PUT("/pet")  
-  Void updatePet(
-    @Body Pet body
-  );
-
-  /**
-   * Update an existing pet
-   * Async method
-   * @param body Pet object that needs to be added to the store
-   * @param cb callback method   
-   * @return void
-   */
-  
-  @PUT("/pet")  
-  void updatePet(
-    @Body Pet body, Callback<Void> cb
-  ); 
-  
   /**
    * Add a new pet to the store
    * Sync method
    * 
-   * @param body Pet object that needs to be added to the store
+   * @param body Pet object that needs to be added to the store (required)
    * @return Void
    */
   
-  @POST("/pet")  
+  @POST("/pet")
   Void addPet(
-    @Body Pet body
+    @retrofit.http.Body Pet body
   );
 
   /**
    * Add a new pet to the store
    * Async method
-   * @param body Pet object that needs to be added to the store
-   * @param cb callback method   
+   * @param body Pet object that needs to be added to the store (required)
+   * @param cb callback method
    * @return void
    */
   
-  @POST("/pet")  
+  @POST("/pet")
   void addPet(
-    @Body Pet body, Callback<Void> cb
-  ); 
+    @retrofit.http.Body Pet body, Callback<Void> cb
+  );
+  /**
+   * Deletes a pet
+   * Sync method
+   * 
+   * @param petId Pet id to delete (required)
+   * @param apiKey  (optional)
+   * @return Void
+   */
   
+  @DELETE("/pet/{petId}")
+  Void deletePet(
+    @retrofit.http.Path("petId") Long petId, @retrofit.http.Header("api_key") String apiKey
+  );
+
+  /**
+   * Deletes a pet
+   * Async method
+   * @param petId Pet id to delete (required)
+   * @param apiKey  (optional)
+   * @param cb callback method
+   * @return void
+   */
+  
+  @DELETE("/pet/{petId}")
+  void deletePet(
+    @retrofit.http.Path("petId") Long petId, @retrofit.http.Header("api_key") String apiKey, Callback<Void> cb
+  );
   /**
    * Finds Pets by status
    * Sync method
-   * Multiple status values can be provided with comma seperated strings
-   * @param status Status values that need to be considered for filter
+   * Multiple status values can be provided with comma separated strings
+   * @param status Status values that need to be considered for filter (required)
    * @return List<Pet>
    */
   
-  @GET("/pet/findByStatus")  
+  @GET("/pet/findByStatus")
   List<Pet> findPetsByStatus(
-    @Query("status") List<String> status
+    @retrofit.http.Query("status") CSVParams status
   );
 
   /**
    * Finds Pets by status
    * Async method
-   * @param status Status values that need to be considered for filter
-   * @param cb callback method   
+   * @param status Status values that need to be considered for filter (required)
+   * @param cb callback method
    * @return void
    */
   
-  @GET("/pet/findByStatus")  
+  @GET("/pet/findByStatus")
   void findPetsByStatus(
-    @Query("status") List<String> status, Callback<List<Pet>> cb
-  ); 
-  
+    @retrofit.http.Query("status") CSVParams status, Callback<List<Pet>> cb
+  );
   /**
    * Finds Pets by tags
    * Sync method
-   * Muliple tags can be provided with comma seperated strings. Use tag1, tag2, tag3 for testing.
-   * @param tags Tags to filter by
+   * Multiple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
+   * @param tags Tags to filter by (required)
    * @return List<Pet>
    */
   
-  @GET("/pet/findByTags")  
+  @GET("/pet/findByTags")
   List<Pet> findPetsByTags(
-    @Query("tags") List<String> tags
+    @retrofit.http.Query("tags") CSVParams tags
   );
 
   /**
    * Finds Pets by tags
    * Async method
-   * @param tags Tags to filter by
-   * @param cb callback method   
+   * @param tags Tags to filter by (required)
+   * @param cb callback method
    * @return void
    */
   
-  @GET("/pet/findByTags")  
+  @GET("/pet/findByTags")
   void findPetsByTags(
-    @Query("tags") List<String> tags, Callback<List<Pet>> cb
-  ); 
-  
+    @retrofit.http.Query("tags") CSVParams tags, Callback<List<Pet>> cb
+  );
   /**
    * Find pet by ID
    * Sync method
-   * Returns a pet when ID &lt; 10.  ID &gt; 10 or nonintegers will simulate API error conditions
-   * @param petId ID of pet that needs to be fetched
+   * Returns a single pet
+   * @param petId ID of pet to return (required)
    * @return Pet
    */
   
-  @GET("/pet/{petId}")  
+  @GET("/pet/{petId}")
   Pet getPetById(
-    @Path("petId") Long petId
+    @retrofit.http.Path("petId") Long petId
   );
 
   /**
    * Find pet by ID
    * Async method
-   * @param petId ID of pet that needs to be fetched
-   * @param cb callback method   
+   * @param petId ID of pet to return (required)
+   * @param cb callback method
    * @return void
    */
   
-  @GET("/pet/{petId}")  
+  @GET("/pet/{petId}")
   void getPetById(
-    @Path("petId") Long petId, Callback<Pet> cb
-  ); 
+    @retrofit.http.Path("petId") Long petId, Callback<Pet> cb
+  );
+  /**
+   * Update an existing pet
+   * Sync method
+   * 
+   * @param body Pet object that needs to be added to the store (required)
+   * @return Void
+   */
   
+  @PUT("/pet")
+  Void updatePet(
+    @retrofit.http.Body Pet body
+  );
+
+  /**
+   * Update an existing pet
+   * Async method
+   * @param body Pet object that needs to be added to the store (required)
+   * @param cb callback method
+   * @return void
+   */
+  
+  @PUT("/pet")
+  void updatePet(
+    @retrofit.http.Body Pet body, Callback<Void> cb
+  );
   /**
    * Updates a pet in the store with form data
    * Sync method
    * 
-   * @param petId ID of pet that needs to be updated
-   * @param name Updated name of the pet
-   * @param status Updated status of the pet
+   * @param petId ID of pet that needs to be updated (required)
+   * @param name Updated name of the pet (optional)
+   * @param status Updated status of the pet (optional)
    * @return Void
    */
   
-  @FormUrlEncoded
-  @POST("/pet/{petId}")  
+  @retrofit.http.FormUrlEncoded
+  @POST("/pet/{petId}")
   Void updatePetWithForm(
-    @Path("petId") String petId, @Field("name") String name, @Field("status") String status
+    @retrofit.http.Path("petId") Long petId, @retrofit.http.Field("name") String name, @retrofit.http.Field("status") String status
   );
 
   /**
    * Updates a pet in the store with form data
    * Async method
-   * @param petId ID of pet that needs to be updated
-   * @param name Updated name of the pet
-   * @param status Updated status of the pet
-   * @param cb callback method   
+   * @param petId ID of pet that needs to be updated (required)
+   * @param name Updated name of the pet (optional)
+   * @param status Updated status of the pet (optional)
+   * @param cb callback method
    * @return void
    */
   
-  @FormUrlEncoded
-  @POST("/pet/{petId}")  
+  @retrofit.http.FormUrlEncoded
+  @POST("/pet/{petId}")
   void updatePetWithForm(
-    @Path("petId") String petId, @Field("name") String name, @Field("status") String status, Callback<Void> cb
-  ); 
-  
-  /**
-   * Deletes a pet
-   * Sync method
-   * 
-   * @param petId Pet id to delete
-   * @param apiKey 
-   * @return Void
-   */
-  
-  @DELETE("/pet/{petId}")  
-  Void deletePet(
-    @Path("petId") Long petId, @Header("api_key") String apiKey
+    @retrofit.http.Path("petId") Long petId, @retrofit.http.Field("name") String name, @retrofit.http.Field("status") String status, Callback<Void> cb
   );
-
-  /**
-   * Deletes a pet
-   * Async method
-   * @param petId Pet id to delete
-   * @param apiKey 
-   * @param cb callback method   
-   * @return void
-   */
-  
-  @DELETE("/pet/{petId}")  
-  void deletePet(
-    @Path("petId") Long petId, @Header("api_key") String apiKey, Callback<Void> cb
-  ); 
-  
   /**
    * uploads an image
    * Sync method
    * 
-   * @param petId ID of pet to update
-   * @param additionalMetadata Additional data to pass to server
-   * @param file file to upload
-   * @return Void
+   * @param petId ID of pet to update (required)
+   * @param additionalMetadata Additional data to pass to server (optional)
+   * @param file file to upload (optional)
+   * @return ModelApiResponse
    */
   
-  @Multipart
-  @POST("/pet/{petId}/uploadImage")  
-  Void uploadFile(
-    @Path("petId") Long petId, @Part("additionalMetadata") String additionalMetadata, @Part("file") TypedFile file
+  @retrofit.http.Multipart
+  @POST("/pet/{petId}/uploadImage")
+  ModelApiResponse uploadFile(
+    @retrofit.http.Path("petId") Long petId, @retrofit.http.Part("additionalMetadata") String additionalMetadata, @retrofit.http.Part("file") TypedFile file
   );
 
   /**
    * uploads an image
    * Async method
-   * @param petId ID of pet to update
-   * @param additionalMetadata Additional data to pass to server
-   * @param file file to upload
-   * @param cb callback method   
+   * @param petId ID of pet to update (required)
+   * @param additionalMetadata Additional data to pass to server (optional)
+   * @param file file to upload (optional)
+   * @param cb callback method
    * @return void
    */
   
-  @Multipart
-  @POST("/pet/{petId}/uploadImage")  
+  @retrofit.http.Multipart
+  @POST("/pet/{petId}/uploadImage")
   void uploadFile(
-    @Path("petId") Long petId, @Part("additionalMetadata") String additionalMetadata, @Part("file") TypedFile file, Callback<Void> cb
-  ); 
-  
+    @retrofit.http.Path("petId") Long petId, @retrofit.http.Part("additionalMetadata") String additionalMetadata, @retrofit.http.Part("file") TypedFile file, Callback<ModelApiResponse> cb
+  );
 }

@@ -18,6 +18,8 @@ public class AndroidClientOptionsProvider implements OptionsProvider {
     public static final String ARTIFACT_VERSION_VALUE = "1.0.0-SNAPSHOT";
     public static final String SOURCE_FOLDER_VALUE = "src/main/java/test";
     public static final String ANDROID_MAVEN_GRADLE_PLUGIN_VALUE = "true";
+    public static final String LIBRARY_VALUE = "httpclient";
+    public static final String SERIALIZABLE_MODEL_VALUE = "false";
 
     @Override
     public String getLanguage() {
@@ -37,6 +39,8 @@ public class AndroidClientOptionsProvider implements OptionsProvider {
                 .put(CodegenConstants.ARTIFACT_VERSION, ARTIFACT_VERSION_VALUE)
                 .put(CodegenConstants.SOURCE_FOLDER, SOURCE_FOLDER_VALUE)
                 .put(AndroidClientCodegen.USE_ANDROID_MAVEN_GRADLE_PLUGIN, ANDROID_MAVEN_GRADLE_PLUGIN_VALUE)
+                .put(CodegenConstants.LIBRARY, LIBRARY_VALUE)
+                .put(CodegenConstants.SERIALIZABLE_MODEL, SERIALIZABLE_MODEL_VALUE)
                 .build();
     }
 
