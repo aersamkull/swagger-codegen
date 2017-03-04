@@ -12,6 +12,8 @@
 
 :warning: If the OpenAPI/Swagger spec is obtained from an untrusted source, please make sure you've reviewed the spec before using Swagger Codegen to generate the API client, server stub or documentation as [code injection](https://en.wikipedia.org/wiki/Code_injection) may occur :warning:
 
+:rocket: ProductHunt: https://producthunt.com/posts/swagger-codegen :rocket:
+
 ## Overview
 This is the swagger codegen project, which allows generation of API client libraries (SDK generation), server stubs and documentation automatically given an [OpenAPI Spec](https://github.com/OAI/OpenAPI-Specification). Currently, the following languages/frameworks are supported:
 
@@ -66,7 +68,8 @@ The OpenAPI Specification has undergone 3 revisions since initial creation in 20
 
 Swagger Codegen Version    | Release Date | OpenAPI Spec compatibility | Notes
 -------------------------- | ------------ | -------------------------- | -----
-2.3.0 (upcoming minor release) | TBD   | 1.0, 1.1, 1.2, 2.0   | Minor release with breaking changes
+2.3.0 (upcoming minor release) | Apr/May 2017   | 1.0, 1.1, 1.2, 2.0   | Minor release with breaking changes
+2.2.3 (upcoming patch release) | TBD   | 1.0, 1.1, 1.2, 2.0   | Patch release without breaking changes
 2.2.2 (**current stable**) | 2017-03-01   | 1.0, 1.1, 1.2, 2.0   | [tag v2.2.2](https://github.com/swagger-api/swagger-codegen/tree/v2.2.2)
 2.2.1 | 2016-08-07   | 1.0, 1.1, 1.2, 2.0   | [tag v2.2.1](https://github.com/swagger-api/swagger-codegen/tree/v2.2.1)
 2.1.6 | 2016-04-06   | 1.0, 1.1, 1.2, 2.0   | [tag v2.1.6](https://github.com/swagger-api/swagger-codegen/tree/v2.1.6)
