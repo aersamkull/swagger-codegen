@@ -26,6 +26,7 @@ public abstract class AbstractTypeScriptClientCodegen extends DefaultCodegen imp
 
     protected String modelPropertyNaming= "camelCase";
     protected Boolean supportsES6 = true;
+    protected Boolean useNativeFetch = false;
     protected HashSet<String> languageGenericTypes;
 
     public AbstractTypeScriptClientCodegen() {
@@ -91,7 +92,7 @@ public abstract class AbstractTypeScriptClientCodegen extends DefaultCodegen imp
 
         cliOptions.add(new CliOption(CodegenConstants.MODEL_PROPERTY_NAMING, CodegenConstants.MODEL_PROPERTY_NAMING_DESC).defaultValue("camelCase"));
         cliOptions.add(new CliOption(CodegenConstants.SUPPORTS_ES6, CodegenConstants.SUPPORTS_ES6_DESC).defaultValue("false"));
-
+        cliOptions.add(new CliOption(CodegenConstants.USE_NATIVE_FETCH, CodegenConstants.USE_NATIVE_FETCH_DESC).defaultValue("false"));
     }
 
     @Override
@@ -105,6 +106,10 @@ public abstract class AbstractTypeScriptClientCodegen extends DefaultCodegen imp
         if (additionalProperties.containsKey(CodegenConstants.SUPPORTS_ES6)) {
             setSupportsES6(Boolean.valueOf(additionalProperties.get(CodegenConstants.SUPPORTS_ES6).toString()));
             additionalProperties.put("supportsES6", getSupportsES6());
+        }
+        if (additionalProperties.containsKey(CodegenConstants.USE_NATIVE_FETCH)) {
+            setSupportsES6(Boolean.valueOf(additionalProperties.get(CodegenConstants.USE_NATIVE_FETCH).toString()));
+            additionalProperties.put("useNativeFetch", getUseNativeFetch());
         }
     }
 
@@ -359,6 +364,14 @@ public abstract class AbstractTypeScriptClientCodegen extends DefaultCodegen imp
 
     public Boolean getSupportsES6() {
         return supportsES6;
+    }
+
+    public void setUseNativeFetch(Boolean value) {
+        useNativeFetch = value;
+    }
+
+    public Boolean getUseNativeFetch() {
+        return useNativeFetch;
     }
 
     @Override

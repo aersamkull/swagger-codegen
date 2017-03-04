@@ -165,6 +165,9 @@ public class CodegenConstants {
     public static final String SUPPORTS_ES6 = "supportsES6";
     public static final String SUPPORTS_ES6_DESC = "Generate code that conforms to ES6.";
 
+    public static final String USE_NATIVE_FETCH = "useNativeFetch";
+    public static final String USE_NATIVE_FETCH_DESC = "Assume window.fetch exists and therefore do not import it";
+
     public static final String EXCLUDE_TESTS = "excludeTests";
     public static final String EXCLUDE_TESTS_DESC = "Specifies that no tests are to be generated.";
 
