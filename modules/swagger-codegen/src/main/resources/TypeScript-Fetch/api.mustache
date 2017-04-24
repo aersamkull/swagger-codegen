@@ -100,7 +100,7 @@ export const {{classname}}FetchParamCreator = {
 
         let contentTypeHeader: Dictionary<string> = {{#supportsES6}}Object.{{/supportsES6}}assign({}, defaultHeaders);
 {{#hasFormParams}}
-        contentTypeHeader = { "Content-Type": "application/x-www-form-urlencoded" };
+        contentTypeHeader["Content-Type"] = "application/x-www-form-urlencoded";
         fetchOptions.body = querystring.stringify({
         {{#formParams}}
             "{{baseName}}": params["{{paramName}}"],
@@ -108,7 +108,7 @@ export const {{classname}}FetchParamCreator = {
         });
 {{/hasFormParams}}
 {{#hasBodyParam}}
-        contentTypeHeader = { "Content-Type": "application/json" };{{#bodyParam}}
+        contentTypeHeader["Content-Type"] = "application/json";{{#bodyParam}}
         if (params["{{paramName}}"]) {
             fetchOptions.body = JSON.stringify(params["{{paramName}}"] || {});
         }{{/bodyParam}}
